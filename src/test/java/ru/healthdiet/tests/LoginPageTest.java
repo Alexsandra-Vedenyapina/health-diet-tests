@@ -2,13 +2,11 @@ package ru.healthdiet.tests;
 
 import org.junit.jupiter.api.Test;
 import ru.healthdiet.pages.LoginPage;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
+import ru.healthdiet.pages.MainPage;
 
 public class LoginPageTest extends TestBase{
     LoginPage loginPage= new LoginPage();
+    MainPage mainPage = new MainPage();
 
     @Test
     public void testSuccessfulLogin(){
@@ -17,10 +15,8 @@ public class LoginPageTest extends TestBase{
                 .setPassword("TestQA951852")
                 .clickLoginButton();
 
-        //•	ОР: Успешно авторизоравались. Отображается главное меню и логин пользователя.
-        $(".mzr-top-menu-content").shouldBe(visible);
-        $(".mzr-top-menu-content").shouldHave(text("Общая лента"));
-        $(".mzr-top-menu-name").shouldHave(text("Тест Тестович Тестов"));
+        mainPage.verifyElementMainPageVisible()
+                .verifyNameUser("Тест Тестович Тестов");
 
     }
 
