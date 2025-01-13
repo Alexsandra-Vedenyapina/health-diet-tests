@@ -31,7 +31,7 @@ public class LoginPageTest extends TestBase{
     @Test
     public void invalidPasswordErrorMessage(){
         String password = getRandomPassword(),
-                login = validLogin;
+                login = getRandomLogin();
 
         loginPage.clickButton()
                 .setLogin(login)

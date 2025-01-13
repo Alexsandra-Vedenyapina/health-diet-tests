@@ -8,5 +8,9 @@ public class TestData {
             validNameUser ="Тест Тестович Тестов",
             incorrectPasswordMessage = "Неправильный пароль";
 
+    public static String[] foodProductsList={
+            "Масло сливочное","Селедка под шубой"
+    };
+
 
 }
