@@ -9,7 +9,7 @@ public class TestData {
             incorrectPasswordMessage = "Неправильный пароль";
 
     public static String[] foodProductsList={
-            "Масло сливочное","Селедка под шубой"
+            "Масло"," яблоко", "хлеб", "молоко", "говядина", "курица"
     };
 
 

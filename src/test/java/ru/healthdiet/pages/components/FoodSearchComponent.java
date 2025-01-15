@@ -6,13 +6,22 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class FoodSearchComponent {
-    public void setFood(String foodProduct){
-        $("input.t-search-food").setValue(foodProduct);
+
+    public FoodSearchComponent setFood(String foodProduct){
+        $("input.t-search-food").shouldBe(Condition.visible).setValue(foodProduct);
+        return this;
     }
 
-    public void verifySearchResult(String foodProduct){
+    public FoodSearchComponent verifySearchResult(String foodProduct){
         $$(".mzr-tree-node").
                 forEach(item ->item.shouldHave(Condition.text(foodProduct)));
+        return this;
     }
+
+    public FoodSearchComponent clickOnProduct(int index){
+        $(".mzr-tree-node.uk-text-bold-semi").shouldBe(Condition.visible).sibling(index).click();
+        return this;
+    }
+
 
 }
