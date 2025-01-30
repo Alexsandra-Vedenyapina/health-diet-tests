@@ -66,4 +66,14 @@ public class FoodDiaryPageTests {
 
     }
 
+    @Test
+    @DisplayName("Загружается фото в Заметку дневника питания")
+    @Tag("BLOKER")
+    public void imageUploadToDiaryNote(){
+        $("[data-test='mode-empty'] .uk-flex-middle:not(.mzr-button-group)").click();
+        $("button .uk-icon-camera").click();
+        $("input[type='file']").uploadFromClasspath("cat1.jpg");
+        $(".uk-thumbnail img").shouldBe(visible);
+        }
+
 }
