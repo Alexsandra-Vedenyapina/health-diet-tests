@@ -8,9 +8,16 @@ public class TestData {
             validNameUser ="Тест Тестович Тестов",
             incorrectPasswordMessage = "Неправильный пароль";
 
+    public static String incorrectLoginMessage(String loginName){
+        return "Пользователя с таким логином ("+ loginName+") не существует";
+    }
+
+
     public static String[] foodProductsList={
             "Масло"," яблоко", "хлеб", "молоко", "говядина", "курица"
     };
+
+
 
 
 }

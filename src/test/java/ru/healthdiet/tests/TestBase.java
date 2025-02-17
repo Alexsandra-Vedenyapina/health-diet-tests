@@ -15,8 +15,8 @@ public class TestBase {
     public  void beforeEach(){
         SelenideLogger.addListener("allure", new AllureSelenide());
 
-        step("Открыть главную страницу МЗР", () ->{
-            open("https://health-diet.ru");
+        step("Открыть страницу авторизации МЗР", () ->{
+            open("https://health-diet.ru/account/login");
         });
 
 

@@ -4,11 +4,11 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.*;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import ru.healthdiet.pages.LoginPage;
 import ru.healthdiet.pages.MainPage;
 
-import java.util.Locale;
 
 import static ru.healthdiet.tests.TestData.*;
 import static ru.healthdiet.utils.RandomUtils.getRandomLogin;
@@ -24,6 +24,7 @@ public class LoginPageTest extends TestBase{
     @Story("Успешная авторизация пользователя") // пишем, что с ней происходит (CRUD)
     @Owner("vedenyapina") // ответственный
     @Severity(SeverityLevel.BLOCKER) // серьезность
+    @Tag("BLOCKER")
     @Link(value = "Testing", url = "https://testing.github.com")
     @DisplayName("Успешная авторизация пользователя на МЗР")
     public void testSuccessfulLogin(){
@@ -42,7 +43,35 @@ public class LoginPageTest extends TestBase{
     }
 
     @Test
+    @Feature("Страница авторизации МЗР") // пишем какая фича проверяется
+    @Story("Ошибка авторизации пользователя") // пишем, что с ней происходит (CRUD)
+    @Owner("vedenyapina") // ответственный
+    @Severity(SeverityLevel.BLOCKER) // серьезность
+    @Tag("BLOCKER")
+    @Link(value = "Testing", url = "https://testing.github.com")
+    @DisplayName("Сообщение об ошибке авторизации с неверным паролем")
     public void invalidPasswordErrorMessage(){
+        String password = getRandomPassword(),
+                login = validLogin;
+
+        loginPage.clickButton()
+                .setLogin(login)
+                .setPassword(password)
+                .clickLoginButton();
+
+        loginPage.verifyWarningIsVisible()
+                        .verifyIWarningText(incorrectPasswordMessage);
+    }
+
+    @Test
+    @Feature("Страница авторизации МЗР") // пишем какая фича проверяется
+    @Story("Ошибка авторизации пользователя") // пишем, что с ней происходит (CRUD)
+    @Owner("vedenyapina") // ответственный
+    @Severity(SeverityLevel.BLOCKER) // серьезность
+    @Tag("BLOCKER")
+    @Link(value = "Testing", url = "https://testing.github.com")
+    @DisplayName("Сообщение об ошибке авторизации с неверным логином")
+    public void invalidLoginErrorMessage(){
         String password = getRandomPassword(),
                 login = getRandomLogin();
 
@@ -52,7 +81,7 @@ public class LoginPageTest extends TestBase{
                 .clickLoginButton();
 
         loginPage.verifyWarningIsVisible()
-                        .verifyIWarningText(incorrectPasswordMessage);
+                .verifyIWarningText(incorrectLoginMessage(login));
     }
 
 }

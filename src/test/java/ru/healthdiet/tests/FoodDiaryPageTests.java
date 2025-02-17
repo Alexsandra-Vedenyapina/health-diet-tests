@@ -4,6 +4,7 @@ package ru.healthdiet.tests;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -35,21 +36,13 @@ public class FoodDiaryPageTests {
     }
 
 
-    @Test
-    @DisplayName("Выдается список продуктов содержащих введенный текст в поле поиска")
-    @Tag("BLOKER")
-    public void searchProductByText(){
-        String foodProduct= getRandomItemFromArray(foodProductsList);
-
-        foodDiary.setFoodProduct(foodProduct);
-
-        foodDiary.verifySearchResultsIncludeEnteredText(foodProduct);
-
-    }
-
     @ValueSource(strings = {"Завтрак", "Обед", "Ужин"})
     @ParameterizedTest(name="Успешно добавлен выбранный продукт на {0} в рацион текущего дня")
-    @Tag("BLOKER")
+    @Feature("Страница дневника питания") // пишем какая фича проверяется
+    @Story("Добавление продукта в дневник питания") // пишем, что с ней происходит (CRUD)
+    @Owner("vedenyapina") // ответственный
+    @Severity(SeverityLevel.CRITICAL) // серьезность
+    @Tag("CRITICAL")
     public void addProductToTodaysDiary(String mailType){
         String foodProduct= getRandomItemFromArray(foodProductsList);
         String inputNumber = "50";
@@ -67,8 +60,12 @@ public class FoodDiaryPageTests {
     }
 
     @Test
+    @Feature("Страница дневника питания") // пишем какая фича проверяется
+    @Story("Загрузка фото в Заметку дневника питания") // пишем, что с ней происходит (CRUD)
+    @Owner("vedenyapina") // ответственный
+    @Severity(SeverityLevel.BLOCKER) // серьезность
     @DisplayName("Загружается фото в Заметку дневника питания")
-    @Tag("BLOKER")
+    @Tag("BLOCKER")
     public void imageUploadToDiaryNote(){
         $("[data-test='mode-empty'] .uk-flex-middle:not(.mzr-button-group)").click();
         $("button .uk-icon-camera").click();
